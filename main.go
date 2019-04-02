@@ -44,7 +44,7 @@ func main() {
 	note.Execute(out, map[string]interface{}{
 		"opsat":                    start.Format("2/1-06"),
 		"nedtages":                 end.Format("2/1-06"),
-		"DateWithWeekdayAllcapsDK": strings.ToUpper(ugedag(raid) + " D." + raid.Format(" 2 ") + maaned(raid) + raid.Format(" 2006")), // eksempel: TORSDAG D. 24. MAJ 2018
+		"DateWithWeekdayAllcapsDK": strings.ToUpper(ugedag(raid) + " D." + raid.Format(" 2. ") + maaned(raid) + raid.Format(" 2006")), // eksempel: TORSDAG D. 24. MAJ 2018
 		"DateWithWeekdayAllcapsEN": strings.ToUpper(raid.Format("Monday January 2, 2006")),                                           // eksempel: TUESDAY MAY 24, 2018
 		"raidOnDK":                 raid.Format("2. ") + maaned(raid),                                                                // eksempel: 24. maj
 		"raidOnEN":                 raid.Format("January 2"),
@@ -55,9 +55,11 @@ func main() {
 		panic(err)
 	}
 	mail.Execute(out, map[string]interface{}{
-		"DateWithWeekdayDK": ugedag(raid) + " d." + raid.Format(" 2 ") + maaned(raid) + raid.Format(" 2006"), // eksempel: torsdag d. 24. maj 2018.
-		"DateWithWeekdayEN": raid.Format("Monday January 2, 2006"),                                           // eksempel: TUESDAY MAY 24, 2018
-		"NoticeDK":          ugedag(start) + " d." + start.Format(" 2 ") + maaned(start),                     // Eksempel: torsdag d. 12. april
+		"DateWithWeekdayDK": ugedag(raid) + " d." + raid.Format(" 2. ") + maaned(raid) + raid.Format(" 2006"), // eksempel: torsdag d. 24. maj 2018.
+		"DateWithWeekdayEN": raid.Format("Monday January 2, 2006"),
+		"SubjectDK": raid.Format("2. ") + maaned(raid), // eksempel: 24. maj
+		"SubjectEN": raid.Format("January 2nd"),                                            // eksempel: May 24th
+		"NoticeDK":          ugedag(start) + " d." + start.Format(" 2. ") + maaned(start),                     // Eksempel: torsdag d. 12. april
 		"NoticeEN":          start.Format("Monday January 2"),                                                // Eksempel: Thursday April 12
 	})
 }
