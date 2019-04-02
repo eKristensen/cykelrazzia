@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"os"
 	"strings"
@@ -12,7 +13,16 @@ func main() {
 	start := time.Now()
 
 	// Cyeklrazzia dato - min varsel 6 uger
-	raid := start.AddDate(0, 0, 7*6)
+	//raid := start.AddDate(0, 0, 7*6)
+	raid, err := time.Parse("2/1-06", "11/6-19")
+	if err != nil {
+		panic(err)
+	}
+
+	// Tjek at de 6 ugers varsel er overholdt!
+	if raid.Before(start.AddDate(0, 0, 7*6)) {
+		fmt.Print("Der skal være mindst 6 uger imellem razzia og varsel!")
+	}
 
 	// Platkat ned dato - må tages ned 2 uger efter razzia
 	end := raid.AddDate(0, 0, 7*2)
