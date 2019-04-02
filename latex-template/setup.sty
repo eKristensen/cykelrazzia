@@ -1,0 +1,64 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}%Ensure proper formatting of non-standrad letters
+\usepackage{fancyhdr}%Page layout
+\usepackage{listings}%Code marking
+\usepackage{minted}  %Code marking, allows import from files eg \inputminted{C}{src/pro_a1_1_2_34.txt}
+\usepackage{amsmath} %Math
+\usepackage{amsfonts}%Math
+\usepackage{amssymb} %Math
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{subcaption} %Allows subfigures
+\usepackage{float}
+\usepackage[space]{grffile}
+\usepackage[hidelinks]{hyperref} % Makes links on references without red borders
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{prooftrees} %Allows you to make proof trees
+\usepackage{totpages} % Count total number of pages. Use \ref{TotPages} to get the number
+\usepackage{algorithm}     % Type in pseudocode algorithems
+\usepackage{algorithmicx}
+\usepackage{algpseudocode} % Type in pseudocode algorithems
+\usepackage{tikz} % Allows latex to render tikz pictures
+\usepackage{color} % Change color of text easily
+\graphicspath{{fig/}} %Adds standard file path for pics
+\usepackage{geometry} % Layout setup
+\geometry{text={16.5cm,24cm}
+,headheight=60pt
+}
+\voffset=30pt
+\setlength{\parindent}{0cm} %No indentation in new paragraph
+\setlength{\parskip}{1em} %Space in between paragraphs
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+%% Language dependent selection
+\makeatletter
+\newcommand{\newlanguagecommand}[1]{%
+  \newcommand#1{%
+    \@ifundefined{\string#1\languagename}
+      {``No def of \texttt{\string#1} for \languagename''}
+      {\@nameuse{\string#1\languagename}}%
+  }%
+}
+\newcommand{\addtolanguagecommand}[3]{%
+  \@namedef{\string#1#2}{#3}}
+\makeatother
+\newlanguagecommand{\dtu}
+\addtolanguagecommand{\dtu}{english}{Technical University of Denmark}
+\addtolanguagecommand{\dtu}{danish}{Danmarks Tekniske Universitet}
+
+% TODO: Automatisk valg af forfatter, forfattere, Author og authors baseret på antal forfattere og sprog
+%\newlanguagecommand{\authors}
+%\addtolanguagecommand{\authors}{english}{Authors}
+%\addtolanguagecommand{\authors}{danish}{Forfattere}
+
+% TODO: Gruppenummer og kursusnummer + navn globalt valgt
+% Tikz picture dtu logo istedet for PDF?
+
+% The following tree lines makes figure count inside their section instead of from 1 to i. eg in section 1 the figure would be called 1.1, 1.2 and so on. Remove if unwanted
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+\pagestyle{fancy}
