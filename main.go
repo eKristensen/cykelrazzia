@@ -22,6 +22,7 @@ func main() {
 	// Seddel der hænges op
 	note := template.Must(template.ParseFiles("note.tmpl"))
 
+	// Output til note.tex
 	out, err := os.Create("note.tex")
 	if err != nil {
 		panic(err)
