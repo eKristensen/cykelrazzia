@@ -45,9 +45,9 @@ func main() {
 		"opsat":                    start.Format("2/1-06"),
 		"nedtages":                 end.Format("2/1-06"),
 		"DateWithWeekdayAllcapsDK": strings.ToUpper(ugedag(raid) + " D." + raid.Format(" 2 ") + maaned(raid) + raid.Format(" 2006")), // eksempel: TORSDAG D. 24. MAJ 2018
-		"DateWithWeekdayAllcapsEN": strings.ToUpper(raid.Format("Monday Jan 2, 2006")),                                               // eksempel: TUESDAY MAY 24, 2018
+		"DateWithWeekdayAllcapsEN": strings.ToUpper(raid.Format("Monday January 2, 2006")),                                           // eksempel: TUESDAY MAY 24, 2018
 		"raidOnDK":                 raid.Format("2. ") + maaned(raid),                                                                // eksempel: 24. maj
-		"raidOnEN":                 raid.Format("Jan 2"),
+		"raidOnEN":                 raid.Format("January 2"),
 	})
 
 	out, err = os.Create("mail.tex")
@@ -56,9 +56,9 @@ func main() {
 	}
 	mail.Execute(out, map[string]interface{}{
 		"DateWithWeekdayDK": ugedag(raid) + " d." + raid.Format(" 2 ") + maaned(raid) + raid.Format(" 2006"), // eksempel: torsdag d. 24. maj 2018.
-		"DateWithWeekdayEN": raid.Format("Monday Jan 2, 2006"),                                               // eksempel: TUESDAY MAY 24, 2018
+		"DateWithWeekdayEN": raid.Format("Monday January 2, 2006"),                                           // eksempel: TUESDAY MAY 24, 2018
 		"NoticeDK":          ugedag(start) + " d." + start.Format(" 2 ") + maaned(start),                     // Eksempel: torsdag d. 12. april
-		"NoticeEN":          start.Format("Monday Jan 2"),                                                    // Eksempel: Thursday April 12
+		"NoticeEN":          start.Format("Monday January 2"),                                                // Eksempel: Thursday April 12
 	})
 }
 
