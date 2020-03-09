@@ -14,7 +14,7 @@ func main() {
 
 	// Cyeklrazzia dato - min varsel 6 uger
 	//raid := start.AddDate(0, 0, 7*6)
-	raid, err := time.Parse("2/1-06", "11/6-19")
+	raid, err := time.Parse("2/1-06", "9/6-20")
 	if err != nil {
 		panic(err)
 	}
