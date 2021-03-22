@@ -13,15 +13,16 @@ func main() {
 	start := time.Now()
 
 	// Cyeklrazzia dato - min varsel 6 uger
-	//raid := start.AddDate(0, 0, 7*6)
-	raid, err := time.Parse("2/1-06", "7/7-20")
+	// Format DD/MM-ÅÅÅÅ
+	raid, err := time.Parse("2/1-06", "27/4-21")
 	if err != nil {
 		panic(err)
 	}
 
 	// Tjek at de 6 ugers varsel er overholdt!
-	if raid.Before(start.AddDate(0, 0, 7*6)) {
-		fmt.Print("Der skal være mindst 6 uger imellem razzia og varsel!")
+	// Husk at tjekke om husorden er blevet rettet til 4 uger næste gang!
+	if raid.Before(start.AddDate(0, 0, 7*5)) {
+		fmt.Print("Der skal være mindst 6 uger imellem razzia og varsel!\n")
 	}
 
 	// Platkat ned dato - må tages ned 2 uger efter razzia
