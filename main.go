@@ -12,17 +12,18 @@ func main() {
 	// Start nu
 	start := time.Now()
 
-	// Cyeklrazzia dato - min varsel 6 uger
+	// Cyeklrazzia dato (fjerne cykler dag) - min varsel 4 uger
 	// Format DD/MM-ÅÅÅÅ
-	raid, err := time.Parse("2/1-06", "27/4-21")
+	raid, err := time.Parse("2/1-06", "9/6-22")
 	if err != nil {
 		panic(err)
 	}
 
-	// Tjek at de 6 ugers varsel er overholdt!
+	// Tjek at de 4 ugers varsel er overholdt! Dispensation er givet til juni 2022 razzia
 	// Husk at tjekke om husorden er blevet rettet til 4 uger næste gang!
-	if raid.Before(start.AddDate(0, 0, 7*5)) {
-		fmt.Print("Der skal være mindst 6 uger imellem razzia og varsel!\n")
+	// minus 1 dag, da det er okay at varsle præcis x antal uger før (altså på dagen!)
+	if raid.Before(start.AddDate(0, 0, 7*4-1)) {
+		fmt.Print("Der skal være mindst 4 uger imellem razzia og varsel!\n")
 	}
 
 	// Platkat ned dato - må tages ned 2 uger efter razzia
