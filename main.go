@@ -14,7 +14,7 @@ func main() {
 
 	// Cyeklrazzia dato (fjerne cykler dag) - min varsel 4 uger
 	// Format DD/MM-ÅÅÅÅ
-	raid, err := time.Parse("2/1-06", "9/6-22")
+	raid, err := time.Parse("2/1-06", "12/4-23")
 	if err != nil {
 		panic(err)
 	}
@@ -48,8 +48,8 @@ func main() {
 		"nedtages":                 end.Format("2/1-06"),
 		"DateWithWeekdayAllcapsDK": strings.ToUpper(ugedag(raid) + " D." + raid.Format(" 2. ") + maaned(raid) + raid.Format(" 2006")), // eksempel: TORSDAG D. 24. MAJ 2018
 		"DateWithWeekdayAllcapsEN": strings.ToUpper(raid.Format("Monday January 2, 2006")),                                            // eksempel: TUESDAY MAY 24, 2018
-		"raidOnDK":                 raid.Format("2. ") + maaned(raid),                                                                 // eksempel: 24. maj
-		"raidOnEN":                 raid.Format("January 2"),
+		"raidOnDK":                 raid.Format("2. ") + maaned(raid) + raid.Format(" 2006"),                                                                 // eksempel: 24. maj
+		"raidOnEN":                 raid.Format("January 2, 2006"),
 	})
 
 	out, err = os.Create("mail.tex")
@@ -58,11 +58,11 @@ func main() {
 	}
 	mail.Execute(out, map[string]interface{}{
 		"DateWithWeekdayDK": ugedag(raid) + " d." + raid.Format(" 2. ") + maaned(raid) + raid.Format(" 2006"), // eksempel: torsdag d. 24. maj 2018.
-		"DateWithWeekdayEN": raid.Format("Monday January 2, 2006"),
+		"DateWithWeekdayEN": raid.Format("Monday, January 2, 2006"),
 		"SubjectDK":         raid.Format("2. ") + maaned(raid),                            // eksempel: 24. maj
 		"SubjectEN":         raid.Format("January 2"),                                     // eksempel: May 24th
-		"NoticeDK":          ugedag(start) + " d." + start.Format(" 2. ") + maaned(start), // Eksempel: torsdag d. 12. april
-		"NoticeEN":          start.Format("Monday January 2"),                             // Eksempel: Thursday April 12
+		"NoticeDK":          ugedag(start) + " d." + start.Format(" 2. ") + maaned(start) + raid.Format(" 2006"), // Eksempel: torsdag d. 12. april
+		"NoticeEN":          start.Format("Monday, January 2, 2006"),                             // Eksempel: Thursday April 12
 	})
 }
 
